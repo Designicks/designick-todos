@@ -3,6 +3,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var router = express.Router();
+var port = process.env.PORT || 3000;
 
 var index = require('./routes/index');
 var todos = require('./routes/todos');
@@ -77,6 +78,6 @@ app.post('/remove/:id',async function (req, res) {
 
 
 
-app.listen(3000, function(){
+app.listen(port, function(){
     console.log('Server started on port 3000...');
 });
