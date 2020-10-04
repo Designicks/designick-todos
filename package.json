@@ -1,13 +1,13 @@
 {
-  "name": "meantodos",
+  "name": "todos-app-designick",
   "version": "1.0.0",
-  "description": "Simple todos app that runs on the MEAN stack",
+  "description": "Todos App by Designick Pro - A lead Towards Technology | We Develop Creative Products & Digital Solutions",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
-  "author": "",
+  "author": "Nikunj Gurjar",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",

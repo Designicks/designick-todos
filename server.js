@@ -58,6 +58,7 @@ app.post('/addnote', function(req,res){
 }) 
 //Add Note/Submit note
 
+//Remove Note/Delete note
 app.post('/remove/:id',async function (req, res) {
     var getid = mongoose.Types.ObjectId(req.params.id)
     // console.log(getid);
@@ -66,15 +67,43 @@ app.post('/remove/:id',async function (req, res) {
         if (err){ throw err;}
         else
         {
-            // console.log(">>>" +getid);
             console.log("Note Removed Successfully");
         } 
         
     }); 
     // console.log(req.params.id);
     res.redirect('/');
-  });
+});
+//Remove Note/Delete note
 
+//Edit Note/Update note
+app.post('/editnote/:id',async function (req, res) {
+    var note_title = req.body.note_title;
+    var note_desc = req.body.note_desc;
+    var date_time = new Date();
+    var data = { 
+        "note_title": note_title, 
+        "note_desc":note_desc,
+        "note_time":date_time
+    }
+    // console.log(data);
+    var getid = mongoose.Types.ObjectId(req.params.id)
+    console.log(getid);
+    await db.collection('meantodosdb').updateOne(
+        {_id:getid},
+        {$set:{...data}},
+        function(err, collection){ 
+        if (err){ throw err;}
+        else
+        {
+            console.log("Note Updated Successfully");
+        } 
+        
+    }); 
+    // console.log(req.params.id);
+    res.redirect('/');
+  });
+// 
 
 
 
