@@ -7,12 +7,19 @@ mongoose.connect('mongodb+srv://usermeantodo:uftU4Yb98f4HJaJg@meantodos.mhhcx.mo
 
 const db = mongoose.connection
 
-router.get('/',async function(req, res){
-    let data = await db.collection('meantodosdb').find({}).sort('note_time',-1).toArray();
+router.get('/',async function(req, res, next){
+    try {
+    // let data = await db.collection('meantodosdb').find({}).sort('note_time',-1).toArray();
+    let data = await db.collection('meantodosdb').find({}, { sort: { note_time: -1 } }).toArray();
     // console.log(data);
     res.render('index',{title:'ToDo App - Designick ',data:data});
     // let currenttime = Date.now();
     // console.log(currenttime);
+    }
+    catch (err) {
+        next(err);
+      }
+
 });
 
 

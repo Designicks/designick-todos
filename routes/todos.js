@@ -19,16 +19,6 @@ var mongoose = require('mongoose');
 
 router.get('/todos', function(req, res, next){
     res.send('TODOS API');
-//     db.collection("meantodosdb").find(function(err, collection) {
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             // res.send(collection);
-//             res.json(collection);
-//             console.log(collection);
-//         }
-//     }); 
 });
 
 module.exports = router;

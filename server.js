@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var port = process.env.PORT || 3000;
+var http = require('http');
 
 var index = require('./routes/index');
 var todos = require('./routes/todos');
@@ -76,8 +77,17 @@ app.post('/remove/:id',async function (req, res) {
 });
 //Remove Note/Delete note
 
+//GetEdit NoteID
+// app.post('/geteditid/:id', function(req, res) {
+//     var editid = req.params.id;
+//     console.log("editid : " +editid);
+// });
+//GetEdit NoteID
+
 //Edit Note/Update note
 app.post('/editnote/:id',async function (req, res) {
+    var btngetid = req.params.id; 
+    console.log("btngetid: "+ btngetid);
     var note_title = req.body.note_title;
     var note_desc = req.body.note_desc;
     var date_time = new Date();
@@ -88,22 +98,24 @@ app.post('/editnote/:id',async function (req, res) {
     }
     // console.log(data);
     var getid = mongoose.Types.ObjectId(req.params.id)
-    console.log(getid);
-    await db.collection('meantodosdb').updateOne(
-        {_id:getid},
-        {$set:{...data}},
-        function(err, collection){ 
-        if (err){ throw err;}
-        else
-        {
-            console.log("Note Updated Successfully");
-        } 
-        
-    }); 
+    console.log("getid: "+ getid);
+    db.collection('meantodosdb').updateOne(
+        { _id: getid },
+        { $set: { ...data } },
+        function (err) {
+            if (err) { throw err; }
+
+            else {
+                console.log("Note Updated Successfully");
+            }
+
+        }); 
     // console.log(req.params.id);
     res.redirect('/');
   });
 // 
+
+
 
 
 

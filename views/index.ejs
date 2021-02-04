@@ -280,12 +280,15 @@
         <div class="mynoteviewOpt col-lg-2 col-2 pr-2 pl-0 text-right">
 
             <span class="datetime"><%= record.note_time %></span>
-
-        <button class="btn btn_view mb-1 btn-sm" data-toggle="modal" data-target="#exampleModal"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-          </svg>
-        </button>
-
+            
+        <form action="/editnote/<%= record._id%>" method="POST">
+            <a class="btn btn_view mb-1 btn-sm" data-toggle="modal" data-target="#exampleModal"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                </svg>
+            </a>
+        <!-- </form> -->
+        
+    <!-- <form action="/editnote/<%= record._id%>" method="POST"> -->
         <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -297,9 +300,8 @@
           </button>
         </div>
         <div class="modal-body">
-            <form action="/editnote/<%= record._id%>" method="POST">
                 <input type="text" class="form-control input-title" name="note_title" placeholder="" value="<%= record.note_title %>" name="note-title" />    
-                <textarea class="form-control" name="note_desc" rows="5" placeholder=""> <%= record.note_desc %></textarea>    
+                <textarea class="form-control" name="note_desc" rows="5" placeholder=""><%= record.note_desc %></textarea>    
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -309,12 +311,12 @@
                     <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h10a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-1 0v5a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 3v10z"/>
                   </svg> Save Update</button>
             </div>     
-              </form>
-        
+            
       </div>
     </div>
-  </div>
-  <!--Modal Ends-->
+</div>
+<!--Modal Ends-->
+</form>
 
          <!-- <form action="/remove/id=${record._id}" method="PUT"> -->
          <form action="/remove/<%= record._id%>" method="POST">
